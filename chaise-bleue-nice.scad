@@ -1,10 +1,10 @@
 use <Naca_sweep.scad>
 use <splines.scad>
 use <curvedPipe.scad>
+use <maphershey.scad>
 
 d = 2.4; // tube diameter
 N=200; // interpolation points
-$fn=75;
 
 function gen_dat(S, N=100, tube) = [
 for (i=[0:len(S)-1])
@@ -97,7 +97,7 @@ curvedPipe(
         [5,  0, 45],
         [5, 45, 40],
         [5, 54, 80],
-    ], 3, [ 7, 7 ], d * 2, 0);
+    ], 3, [ 7, 7 ], d * 2, 0, $fn=75);
 
 // right seat
 curvedPipe(
@@ -106,13 +106,16 @@ curvedPipe(
         [49,  0, 45],
         [49, 45, 40],
         [49, 54, 80],
-    ], 3, [ 7, 7 ], d * 2, 0);
+    ], 3, [ 7, 7 ], d * 2, 0, $fn=75);
 
 // cross frames
-translate([0,  0,     7]) rotate([0, 90, 0]) cylinder(h=54, r=d, center = false);
-translate([0, 63.8,   7]) rotate([0, 90, 0]) cylinder(h=54, r=d, center = false);
-translate([0,  0,    34]) rotate([0, 90, 0]) cylinder(h=54, r=d, center = false);
-translate([0, 50,    45]) rotate([0, 90, 0]) cylinder(h=54, r=d, center = false);
-translate([5, 53.55, 78]) rotate([0, 90, 0]) cylinder(h=44, r=d, center = false);
+translate([0,  0,     7]) rotate([0, 90, 0]) cylinder(h=54, r=d, center = false, $fn=75);
+translate([0, 63.8,   7]) rotate([0, 90, 0]) cylinder(h=54, r=d, center = false, $fn=75);
+translate([0,  0,    34]) rotate([0, 90, 0]) cylinder(h=54, r=d, center = false, $fn=75);
+translate([0, 50,    45]) rotate([0, 90, 0]) cylinder(h=54, r=d, center = false, $fn=75);
+translate([5, 53.55, 78]) rotate([0, 90, 0]) cylinder(h=44, r=d, center = false, $fn=75);
 
 translate([27, 32, 0]) import("chaise-subparts.stl");
+// translate([11.5, 49.45, 59.8]) rotate ([76.5, 0 ,0]) mapHershey("Christine", f="[u*4,v*4,0]", font="rowmant") sphere(d=1, $fn=20);
+// translate([14, 49, 58.5]) rotate ([76.5, 0 ,0]) mapHershey("Annie", f="[u*6,v*6,0]", font="rowmant") sphere(d=1, $fn=20);
+// translate([10.5, 49, 58.5]) rotate ([76.5, 0 ,0]) mapHershey("Robert", f="[u*6,v*6,0]", font="rowmant") sphere(d=1, $fn=20);
